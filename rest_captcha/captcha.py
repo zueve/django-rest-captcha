@@ -13,27 +13,9 @@ def filter_default(image):
     return utils.filter_smooth(image, ImageFilter.SMOOTH)
 
 
-def random_char_challenge():
-    chars = 'abcdefghijklmnopqrstuvwxyz'
-    ret = ''
-    for i in range(settings.CAPTCHA_LENGTH):
-        ret += random.choice(chars)
-    return ret.upper()
-
-
-def noise_dots(draw, image):
-    size = image.size
-    for p in range(int(size[0] * size[1] * 0.1)):
-        draw.point((random.randint(0, size[0]), random.randint(0, size[1])), fill=settings.CAPTCHA_FOREGROUND_COLOR)
-    return draw
-
-
-def noise_arcs(draw, image):
-    size = image.size
-    draw.arc([-20, -20, size[0], 20], 0, 295, fill=settings.CAPTCHA_FOREGROUND_COLOR)
-    draw.line([-20, 20, size[0] + 20, size[1] - 20], fill=settings.CAPTCHA_FOREGROUND_COLOR)
-    draw.line([-20, 0, size[0] + 20, size[1]], fill=settings.CAPTCHA_FOREGROUND_COLOR)
-    return draw
+def noise_default(image, draw):
+    draw = utils.noise_dots(draw, image, settings.CAPTCHA_FOREGROUND_COLOR)
+    draw = utils.noise_arcs(draw, image, settings.CAPTCHA_FOREGROUND_COLOR)
 
 
 def getsize(font, text):
@@ -87,10 +69,9 @@ def generate_image(word, scale=1):
 
     draw = ImageDraw.Draw(image)
 
-    image = settings.FILTER_FUNCTION(image)
-    # for f in settings.noise_functions():
-    #     draw = f(draw, image)
-    # for f in settings.filter_functions():
+    settings.FILTER_FUNCTION(image)
+    settings.NOISE_FUNCTION(image, draw)
+
     image.save('captcha.png', 'PNG')
     out = StringIO()
     image.save(out, 'PNG')

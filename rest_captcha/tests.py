@@ -7,7 +7,6 @@ from rest_captcha.serializers import RestCaptchaSerializer
 from django.core.cache import cache
 from .settings import api_settings
 from . import utils
-from . import captcha
 
 try:
     from cStringIO import StringIO
@@ -89,6 +88,7 @@ class ImageGenTests(TestCase):
         api_settings.CAPTCHA_LETTER_ROTATION = None
         utils.random_char_challenge = lambda x: 'CAPTCHA'
         api_settings.FILTER_FUNCTION = lambda x: x
+        api_settings.NOISE_FUNCTION = lambda x, y: x
 
         result = self.client.post(reverse('rest_captcha')).json()
         image = result['captcha_image'].decode('base64')
