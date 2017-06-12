@@ -16,7 +16,9 @@ def filter_smooth(image, filter_code):
 def noise_dots(draw, image, fill):
     size = image.size
     for p in range(int(size[0] * size[1] * 0.1)):
-        draw.point((random.randint(0, size[0]), random.randint(0, size[1])), fill=fill)
+        x = random.randint(0, size[0])
+        y = random.randint(0, size[1])
+        draw.point((x, y), fill=fill)
     return draw
 
 
