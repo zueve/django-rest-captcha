@@ -19,7 +19,7 @@ DEFAULTS = {
     'CAPTCHA_LETTER_ROTATION': (-35, 35),
     'CAPTCHA_FOREGROUND_COLOR': '#001100',
     'CAPTCHA_BACKGROUND_COLOR': '#ffffff',
-    'FILTER_FUNCTION': 'rest_captcha.helpers.filter_default',
+    'FILTER_FUNCTION': 'rest_captcha.captcha.filter_default',
     'NOISE_FUNCTION': 'rest_captcha.helpers.noise_default'
 }
 

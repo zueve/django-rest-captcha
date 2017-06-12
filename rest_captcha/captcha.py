@@ -1,6 +1,7 @@
 import random
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from .settings import api_settings as settings
+from . import utils
 
 try:
     from cStringIO import StringIO
@@ -8,8 +9,8 @@ except ImportError:
     from io import BytesIO as StringIO
 
 
-def filter_smooth(image):
-    return image.filter(ImageFilter.SMOOTH)
+def filter_default(image):
+    return utils.filter_smooth(image, ImageFilter.SMOOTH)
 
 
 def random_char_challenge():
@@ -86,10 +87,10 @@ def generate_image(word, scale=1):
 
     draw = ImageDraw.Draw(image)
 
+    image = settings.FILTER_FUNCTION(image)
     # for f in settings.noise_functions():
     #     draw = f(draw, image)
     # for f in settings.filter_functions():
-    #     image = f(image)
     image.save('captcha.png', 'PNG')
     out = StringIO()
     image.save(out, 'PNG')
