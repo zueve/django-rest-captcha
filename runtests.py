@@ -13,13 +13,13 @@ settings.configure(
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': ':MEMORY:',
-            'MAX_ENTRIES': 10000,
         }
     },
     CACHES={
         'default': {
             'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'LOCATION': 'unique-snowflake',
+            'LOCATION': 'rest-captcha',
+            'MAX_ENTRIES': 10000,
         }
     },
     REST_FRAMEWORK={

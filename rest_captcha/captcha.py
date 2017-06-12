@@ -8,6 +8,9 @@ try:
 except ImportError:
     from io import BytesIO as StringIO
 
+FONT = ImageFont.truetype(
+    settings.CAPTCHA_FONT_PATH, settings.CAPTCHA_FONT_SIZE)
+
 
 def filter_default(image):
     return utils.filter_smooth(image, ImageFilter.SMOOTH)
@@ -20,7 +23,8 @@ def noise_default(image, draw):
 
 def getsize(font, text):
     if hasattr(font, 'getoffset'):
-        return tuple([x + y for x, y in zip(font.getsize(text), font.getoffset(text))])
+        return tuple(
+            [x + y for x, y in zip(font.getsize(text), font.getoffset(text))])
     else:
         return font.getsize(text)
 
@@ -33,9 +37,8 @@ def makeimg(size):
     return image
 
 
-def generate_image(word, scale=1):
-    fontpath = settings.CAPTCHA_FONT_PATH
-    font = ImageFont.truetype(fontpath, settings.CAPTCHA_FONT_SIZE * scale)
+def generate_image(word):
+    font = FONT
     size = settings.CAPTCHA_IMAGE_SIZE
 
     xpos = 2
@@ -49,12 +52,16 @@ def generate_image(word, scale=1):
         chardraw = ImageDraw.Draw(charimage)
         chardraw.text((0, 0), ' %s ' % char, font=font, fill='#ffffff')
         if settings.CAPTCHA_LETTER_ROTATION:
-            charimage = charimage.rotate(random.randrange(*settings.CAPTCHA_LETTER_ROTATION), expand=0, resample=Image.BICUBIC)
+            angle = random.randrange(*settings.CAPTCHA_LETTER_ROTATION)
+            charimage = charimage.rotate(
+                angle, expand=0, resample=Image.BICUBIC)
 
         charimage = charimage.crop(charimage.getbbox())
         maskimage = Image.new('L', size)
 
-        maskimage.paste(charimage, (xpos, from_top, xpos + charimage.size[0], from_top + charimage.size[1]))
+        xpos2 = xpos + charimage.size[0]
+        from_top2 = from_top + charimage.size[1]
+        maskimage.paste(charimage, (xpos, from_top, xpos2, from_top2))
         size = maskimage.size
         image = Image.composite(fgimage, image, maskimage)
         xpos = xpos + 2 + charimage.size[0]
@@ -62,7 +69,9 @@ def generate_image(word, scale=1):
     if settings.CAPTCHA_IMAGE_SIZE:
         # centering captcha on the image
         tmpimg = makeimg(size)
-        tmpimg.paste(image, (int((size[0] - xpos) / 2), int((size[1] - charimage.size[1]) / 2 - from_top)))
+        xpos2 = int((size[0] - xpos) / 2)
+        from_top2 = int((size[1] - charimage.size[1]) / 2 - from_top)
+        tmpimg.paste(image, (xpos2, from_top2))
         image = tmpimg.crop((0, 0, size[0], size[1]))
     else:
         image = image.crop((0, 0, xpos + 1, size[1]))
@@ -72,7 +81,6 @@ def generate_image(word, scale=1):
     settings.FILTER_FUNCTION(image)
     settings.NOISE_FUNCTION(image, draw)
 
-    image.save('captcha.png', 'PNG')
     out = StringIO()
     image.save(out, 'PNG')
     content = out.getvalue()

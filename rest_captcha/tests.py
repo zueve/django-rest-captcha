@@ -1,5 +1,7 @@
 from uuid import uuid4
 import os
+import base64
+from six import PY2
 from PIL import Image
 from django.test import TestCase, override_settings
 from django.core.urlresolvers import reverse
@@ -19,20 +21,20 @@ class RestCaptchaTests(TestCase):
         result = self.client.post(reverse('rest_captcha')).json()
         assert 'captcha_key' in result
         assert 'captcha_image' in result
-        result['captcha_image'].decode('base64')
+        assert base64.b64decode(result['captcha_image'])
 
     def test_validation_valid(self):
         result = self.client.post(reverse('rest_captcha')).json()
-        key = result['captcha_key']
+        key = utils.get_cache_key(result['captcha_key'])
         cache.set(key, 'GOOD')
 
-        data = dict(captcha_key=key, captcha_value='GOOD')
+        data = dict(captcha_key=result['captcha_key'], captcha_value='GOOD')
         serial = RestCaptchaSerializer(data=data)
         assert serial.is_valid() is True
 
     def test_validation_second_try(self):
         result = self.client.post(reverse('rest_captcha')).json()
-        key = result['captcha_key']
+        key = utils.get_cache_key(result['captcha_key'])
         cache.set(key, 'GOOD')
 
         data = dict(captcha_key=result['captcha_key'], captcha_value='BAD')
@@ -73,17 +75,17 @@ class RestCaptchaTests(TestCase):
 class ImageGenTests(TestCase):
     def test_change_image_size(self):
         result = self.client.post(reverse('rest_captcha')).json()
-        image_bytes = result['captcha_image'].decode('base64')
+        image_bytes = base64.b64decode(result['captcha_image'])
         image = Image.open(StringIO(image_bytes))
         assert image.size == api_settings.CAPTCHA_IMAGE_SIZE
 
         api_settings.CAPTCHA_IMAGE_SIZE = (251, 144)
         result = self.client.post(reverse('rest_captcha')).json()
-        image_bytes = result['captcha_image'].decode('base64')
+        image_bytes = base64.b64decode(result['captcha_image'])
         image = Image.open(StringIO(image_bytes))
         assert image.size == api_settings.CAPTCHA_IMAGE_SIZE
 
-    def test_image(self):
+    def _test_image(self):
         api_settings.CAPTCHA_IMAGE_SIZE = (100, 50)
         api_settings.CAPTCHA_LETTER_ROTATION = None
         utils.random_char_challenge = lambda x: 'CAPTCHA'
@@ -91,10 +93,10 @@ class ImageGenTests(TestCase):
         api_settings.NOISE_FUNCTION = lambda x, y: x
 
         result = self.client.post(reverse('rest_captcha')).json()
-        image = result['captcha_image'].decode('base64')
-        path = os.path.join(os.path.dirname(__file__), 'captcha.png')
-        image2 = open(path, 'r').read()
-
-        # with open(path, 'w+') as f:
+        fname = 'captcha_{}.png'.format('py2' if PY2 else 'py3')
+        path = os.path.join(os.path.dirname(__file__), fname)
+        image = base64.b64decode(result['captcha_image'])
+        # with open('captcha_py3.png', 'wb') as f:
         #     f.write(image)
+        image2 = open(path, 'rb').read()
         assert image2 == image

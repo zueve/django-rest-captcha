@@ -19,15 +19,14 @@ dev_require = [
 ]
 
 tests_require = [
-    'mock',
-    'pytest',
-    'pytest-cov',
-    'radis-fake'
+    'tox',
+    'six',
 ]
 
 install_requires = [
+    'djangorestframework>3.5.0',
     'django',
-    'djangorestframework'
+    'Pillow==4.1.1',
 ]
 
 entry_points = {
