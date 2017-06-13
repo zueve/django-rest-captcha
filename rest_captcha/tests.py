@@ -23,14 +23,31 @@ class RestCaptchaTests(TestCase):
         assert 'captcha_image' in result
         assert base64.b64decode(result['captcha_image'])
 
-    def test_validation_valid(self):
+    def test_validation_valid1(self):
+        result = self.client.post(reverse('rest_captcha')).json()
+        key = utils.get_cache_key(result['captcha_key'])
+        value = cache.get(key)
+
+        data = dict(captcha_key=result['captcha_key'], captcha_value=value)
+        serial = RestCaptchaSerializer(data=data)
+        assert serial.is_valid() is True
+
+    def test_validation_valid2(self):
         result = self.client.post(reverse('rest_captcha')).json()
         key = utils.get_cache_key(result['captcha_key'])
         cache.set(key, 'GOOD')
 
-        data = dict(captcha_key=result['captcha_key'], captcha_value='GOOD')
+        data = dict(captcha_key=result['captcha_key'], captcha_value='GoOD')
         serial = RestCaptchaSerializer(data=data)
         assert serial.is_valid() is True
+
+    def test_validation_empty_value(self):
+        result = self.client.post(reverse('rest_captcha')).json()
+        key = utils.get_cache_key(result['captcha_key'])
+
+        data = dict(captcha_key=result['captcha_key'], captcha_value='')
+        serial = RestCaptchaSerializer(data=data)
+        assert serial.is_valid() is False
 
     def test_validation_second_try(self):
         result = self.client.post(reverse('rest_captcha')).json()

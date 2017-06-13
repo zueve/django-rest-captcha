@@ -8,6 +8,7 @@ try:
 except ImportError:
     from io import BytesIO as StringIO
 
+print settings.CAPTCHA_FONT_PATH
 FONT = ImageFont.truetype(
     settings.CAPTCHA_FONT_PATH, settings.CAPTCHA_FONT_SIZE)
 

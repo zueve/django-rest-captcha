@@ -9,7 +9,10 @@ from . import captcha
 cache = caches[api_settings.CAPTCHA_CACHE]
 
 
-class RestCapthaView(views.APIView):
+class RestCaptchaView(views.APIView):
+    authentication_classes = ()
+    permission_classes = ()
+
     def post(self, request):
         key = str(uuid.uuid4())
         value = utils.random_char_challenge(api_settings.CAPTCHA_LENGTH)
