@@ -85,7 +85,7 @@ class ImageGenTests(TestCase):
         image = Image.open(StringIO(image_bytes))
         assert image.size == api_settings.CAPTCHA_IMAGE_SIZE
 
-    def _test_image(self):
+    def test_image(self):
         api_settings.CAPTCHA_IMAGE_SIZE = (100, 50)
         api_settings.CAPTCHA_LETTER_ROTATION = None
         utils.random_char_challenge = lambda x: 'CAPTCHA'
