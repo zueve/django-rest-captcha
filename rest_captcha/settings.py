@@ -22,7 +22,9 @@ DEFAULTS = {
     'CAPTCHA_FOREGROUND_COLOR': '#001100',
     'CAPTCHA_BACKGROUND_COLOR': '#ffffff',
     'FILTER_FUNCTION': 'rest_captcha.captcha.filter_default',
-    'NOISE_FUNCTION': 'rest_captcha.captcha.noise_default'
+    'NOISE_FUNCTION': 'rest_captcha.captcha.noise_default',
+    # for tests access: MASTER_CAPTCHA: {'secret_key: secret_value'}
+    'MASTER_CAPTCHA': {}
 }
 
 # List of settings that may be in string import notation.

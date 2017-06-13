@@ -41,7 +41,7 @@ setup(
     author_email='zuevesn@gmail.com',
     name='django-rest-captcha',
     description='Simple captha for django-rest-framework',
-    version='0.0.3',
+    version='0.0.4',
     url='https://github.com/zueve/django-rest-captcha',
     platforms=['OS Independent'],
     install_requires=install_requires,

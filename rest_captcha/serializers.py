@@ -15,7 +15,10 @@ class RestCaptchaSerializer(serializers.Serializer):
         super(RestCaptchaSerializer, self).validate(data)
         cache_key = utils.get_cache_key(data['captcha_key'])
 
-        real_value = cache.get(cache_key)
+        if data['captcha_key'] in api_settings.MASTER_CAPTCHA:
+            real_value = api_settings.MASTER_CAPTCHA[data['captcha_key']]
+        else:
+            real_value = cache.get(cache_key)
 
         if real_value is None:
             raise serializers.ValidationError(

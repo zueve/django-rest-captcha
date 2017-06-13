@@ -43,7 +43,6 @@ class RestCaptchaTests(TestCase):
 
     def test_validation_empty_value(self):
         result = self.client.post(reverse('rest_captcha')).json()
-        key = utils.get_cache_key(result['captcha_key'])
 
         data = dict(captcha_key=result['captcha_key'], captcha_value='')
         serial = RestCaptchaSerializer(data=data)
@@ -117,3 +116,13 @@ class ImageGenTests(TestCase):
         #     f.write(image)
         image2 = open(path, 'rb').read()
         assert image2 == image
+
+    def test_master_captcha(self):
+        api_settings.MASTER_CAPTCHA = {'master_key': 'GOOD'}
+        data = dict(captcha_key='master_key', captcha_value='BAD')
+        serial = RestCaptchaSerializer(data=data)
+        assert serial.is_valid() is False
+
+        data = dict(captcha_key='master_key', captcha_value='GOOD')
+        serial = RestCaptchaSerializer(data=data)
+        assert serial.is_valid() is True
