@@ -5,9 +5,9 @@ django-rest-framework.
 
 
 ## Features
-- speed: use cache insted database
-- safety: union methods for generate key and image. (You can't generate many images for one key)
-- easy: only one rest api (for generate, refresh image).
+- Speed: use cache instead of database
+- Safety: union methods for generate key and image. (You can't generate many images for one key)
+- Easy: only one rest api (for generate, refresh image).
 
 
 ## Install
@@ -21,7 +21,7 @@ Add to installed apps
 ```
 INSTALLED_APPS = (
     ...
-    'rest_framework',
+    'rest_captcha',
 )
 ```
 
@@ -29,7 +29,7 @@ Set rest_captcha serrings (if you want):
 ```
 REST_CAPTCHA = {
     'CAPTCHA_CACHE': 'default',
-    'CAPTCHA_TIMEOUT': 300,  # 5 minuts
+    'CAPTCHA_TIMEOUT': 300,  # 5 minutes
     'CAPTCHA_LENGTH': 4,
     'CAPTCHA_FONT_SIZE': 22,
     'CAPTCHA_IMAGE_SIZE': (90, 40),
@@ -43,7 +43,7 @@ REST_CAPTCHA = {
 }
 ```
 
-We recommendete use radis or lacal memory as cache with set parameter, with bigger value of MAX_ENTRIES:
+We recommend using redis or local memory as cache with set parameter, with bigger value of MAX_ENTRIES:
 ```
 CACHES={
     'default': {
