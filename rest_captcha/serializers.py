@@ -22,7 +22,7 @@ class RestCaptchaSerializer(serializers.Serializer):
 
         if real_value is None:
             raise serializers.ValidationError(
-                 _('Invalid or expared captcha key'))
+                 _('Invalid or expired captcha key'))
 
         cache.delete(cache_key)
         if data['captcha_value'].upper() != real_value:
