@@ -1,13 +1,14 @@
-# Django rest capthca
+# Django rest captcha
 
 This is lightweight version of django-simple-captcha for work with
 django-rest-framework.
 
 
 ## Features
-- speed: use cache insted database
+- speed: used `cache` instead database
 - safety: union methods for generate key and image. (You can't generate many images for one key)
-- easy: only one rest api (for generate, refresh image).
+- easy: only one extended rest api (for generate, refresh image).
+
 
 
 ## Install
@@ -15,17 +16,17 @@ django-rest-framework.
 > pip install django-rest-captcha
 ```
 
-## Add to project
+### Add to your settings.py
 
 Add to installed apps
 ```
 INSTALLED_APPS = (
     ...
-    'rest_framework',
+    'rest_captcha',
 )
 ```
 
-Set rest_captcha serrings (if you want):
+Set rest_captcha settings (if you want), see defaults:
 ```
 REST_CAPTCHA = {
     'CAPTCHA_CACHE': 'default',
@@ -43,7 +44,7 @@ REST_CAPTCHA = {
 }
 ```
 
-We recommendete use radis or lacal memory as cache with set parameter, with bigger value of MAX_ENTRIES:
+We recommended  use redis or memcache. And LocMemCache for local tests with bigger value of MAX_ENTRIES:
 ```
 CACHES={
     'default': {
@@ -53,3 +54,34 @@ CACHES={
     }
 }
 ```
+
+### Add hooks to your app router (urls.py)
+```
+urlpatterns = [
+    ...
+    url(r'api/captcha/', include('rest_captcha.urls')),
+]
+```
+
+## Usage
+Add `RestCaptchaSerializer` to your prodected reauest validator:
+```
+from rest_captcha serializer import RestCaptchaSerializer
+class HumanOnlySerializer(RestCaptchaSerializer):
+    pass
+```
+This code add to your serialzer two required fields (captcha_key, captcha_value):
+
+
+For provive this field client should generate key:
+```
+> curl -X POST http:localhost:8000/api/capthca/ | python -m json.tool
+{
+    'image_type': 'image/png',
+    'image_decode': 'base64',
+    'captcha_key': 'de67e7f3-72d9-42d8-9677-ea381610363d',
+    'captcha_key': '... image encoded in base64'
+}
+```
+
+Decode and understand image and make request. If your have mistake - your should re generate your image.
