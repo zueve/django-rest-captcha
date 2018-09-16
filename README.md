@@ -10,7 +10,6 @@ django-rest-framework.
 - easy: only one extended rest api (for generate, refresh image).
 
 
-
 ## Install
 ```
 > pip install django-rest-captcha
@@ -64,18 +63,18 @@ urlpatterns = [
 ```
 
 ## Usage
-Add `RestCaptchaSerializer` to your prodected reauest validator:
+Add `RestCaptchaSerializer` to your protected request validator:
 ```
 from rest_captcha serializer import RestCaptchaSerializer
 class HumanOnlySerializer(RestCaptchaSerializer):
     pass
 ```
-This code add to your serialzer two required fields (captcha_key, captcha_value):
+This code add to your serializer two required fields (captcha_key, captcha_value):
 
 
-For provive this field client should generate key:
+For provide this field client should generate key:
 ```
-> curl -X POST http:localhost:8000/api/capthca/ | python -m json.tool
+> curl -X POST http:localhost:8000/api/captcha/ | python -m json.tool
 {
     'image_type': 'image/png',
     'image_decode': 'base64',
@@ -84,4 +83,4 @@ For provive this field client should generate key:
 }
 ```
 
-Decode and understand image and make request. If your have mistake - your should re generate your image.
+Decode and understand world on image and make request to protected view. If your have mistake - your should re generate your image.
