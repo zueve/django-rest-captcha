@@ -4,9 +4,10 @@ Lightweight version of django-simple-captcha for work with django-rest-framework
 
 
 ## Features
-- speed: used `cache` instead database
-- safety: union methods for generate key and image. (You can't generate many images for one key)
-- easy: only one extended rest api (for generate, refresh image).
+
+- Speed: use `cache` instead of database
+- Safety: union methods for generate key and image. (You can't generate many images for one key)
+- Easy: only one rest api (for generate, refresh image).
 
 
 ## Usage
@@ -16,7 +17,7 @@ from rest_captcha serializer import RestCaptchaSerializer
 class HumanOnlyDataSerializer(RestCaptchaSerializer):
     pass
 ```
-This code add to your serializer two required fields (captcha_key, captcha_value):
+This code add to your serializer two required fields (captcha_key, captcha_value)
 
 
 For provide this fields client(js code) should generate key:
@@ -41,7 +42,6 @@ If human have mistake - client should re generate your image.
 ```
 
 ### Add to your settings.py
-
 Add to installed apps:
 ```
 INSTALLED_APPS = (
@@ -68,7 +68,7 @@ REST_CAPTCHA = {
 }
 ```
 
-We recommended  use redis or memcache. And LocMemCache for local tests with bigger value of MAX_ENTRIES:
+We recommend using redis or local memory as cache with set parameter, with bigger value of MAX_ENTRIES:
 ```
 CACHES={
     'default': {
@@ -79,7 +79,7 @@ CACHES={
 }
 ```
 
-### Add hooks to your app router (urls.py)
+### Add hooks to your app router (urls.py):
 ```
 urlpatterns = [
     ...
