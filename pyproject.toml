@@ -1,7 +1,8 @@
 [tool.poetry]
 name = "django-rest-captcha"
-version = "0.0.6"
+version = "0.1.0"
 description = "Lightweight version of django-simple-captcha for work with django-rest-framework"
+readme = "README.md"
 authors = ["evgeny.zuev <zueves@gmail.com>"]
 license = "MIT"
 packages = [
