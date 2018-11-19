@@ -4,6 +4,9 @@ version = "0.0.6"
 description = "Lightweight version of django-simple-captcha for work with django-rest-framework"
 authors = ["evgeny.zuev <zueves@gmail.com>"]
 license = "MIT"
+packages = [
+    {include = "rest_captcha"},
+]
 
 [tool.poetry.dependencies]
 python = "*"
