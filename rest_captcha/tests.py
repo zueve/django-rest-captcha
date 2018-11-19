@@ -73,9 +73,10 @@ class RestCaptchaTests(TestCase):
         data = dict(captcha_key=str(uuid4()), captcha_value='ABCD')
         serial = RestCaptchaSerializer(data=data)
         assert serial.is_valid() is False
-        self.assertDictEqual(
-            serial.errors,
-            {'non_field_errors': ['Invalid or expared captcha key']}
+        assert 'non_field_errors' in serial.errors
+        self.assertEqual(
+            'Invalid or expired captcha key',
+            str(serial.errors['non_field_errors'][0])
         )
 
     def test_validation_with_broken_value(self):
