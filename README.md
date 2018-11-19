@@ -42,7 +42,7 @@ If human have mistake - client should re generate your image.
 
 ### Add to your settings.py
 
-Add to installed apps
+Add to installed apps:
 ```
 INSTALLED_APPS = (
     ...
