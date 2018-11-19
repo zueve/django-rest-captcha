@@ -1,0 +1,128 @@
+[[package]]
+category = "main"
+description = "A high-level Python Web framework that encourages rapid development and clean, pragmatic design."
+name = "django"
+optional = false
+python-versions = "*"
+version = "1.11.16"
+
+[package.dependencies]
+pytz = "*"
+
+[[package]]
+category = "main"
+description = "Web APIs for Django, made easy."
+name = "djangorestframework"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "3.9.0"
+
+[[package]]
+category = "dev"
+description = "A platform independent file lock."
+name = "filelock"
+optional = false
+python-versions = "*"
+version = "3.0.10"
+
+[[package]]
+category = "main"
+description = "Python package to parse, read and write Microsoft OLE2 files (Structured Storage or Compound Document, Microsoft Office)"
+name = "olefile"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "0.46"
+
+[[package]]
+category = "main"
+description = "Python Imaging Library (Fork)"
+name = "pillow"
+optional = false
+python-versions = "*"
+version = "4.3.0"
+
+[package.dependencies]
+olefile = "*"
+
+[[package]]
+category = "dev"
+description = "plugin and hook calling mechanisms for python"
+name = "pluggy"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "0.8.0"
+
+[[package]]
+category = "dev"
+description = "library with cross-python path, ini-parsing, io, code, log facilities"
+name = "py"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "1.7.0"
+
+[[package]]
+category = "main"
+description = "World timezone definitions, modern and historical"
+name = "pytz"
+optional = false
+python-versions = "*"
+version = "2018.7"
+
+[[package]]
+category = "dev"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+python-versions = "*"
+version = "1.11.0"
+
+[[package]]
+category = "dev"
+description = "Python Library for Tom's Obvious, Minimal Language"
+name = "toml"
+optional = false
+python-versions = "*"
+version = "0.10.0"
+
+[[package]]
+category = "dev"
+description = "virtualenv-based automation of test activities"
+name = "tox"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "3.5.3"
+
+[package.dependencies]
+filelock = ">=3.0.0,<4"
+pluggy = ">=0.3.0,<1"
+py = ">=1.4.17,<2"
+setuptools = ">=30.0.0"
+six = ">=1.0.0,<2"
+toml = ">=0.9.4"
+virtualenv = ">=1.11.2"
+
+[[package]]
+category = "dev"
+description = "Virtual Python Environment builder"
+name = "virtualenv"
+optional = false
+python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*"
+version = "16.1.0"
+
+[metadata]
+content-hash = "8dd76f8013e76c6f7075b3c23c542f0380423458fc563112582bc8145714334d"
+python-versions = "*"
+
+[metadata.hashes]
+django = ["29268cc47816a44f27308e60f71da635f549c47d8a1d003b28de55141df75791", "37f5876c1fbfd66085001f4c06fa0bf96ef05442c53daf8d4294b6f29e7fa6b8"]
+djangorestframework = ["607865b0bb1598b153793892101d881466bd5a991de12bd6229abb18b1c86136", "63f76cbe1e7d12b94c357d7e54401103b2e52aef0f7c1650d6c820ad708776e5"]
+filelock = ["b8d5ca5ca1c815e1574aee746650ea7301de63d87935b3463d26368b76e31633", "d610c1bb404daf85976d7a82eb2ada120f04671007266b708606565dd03b5be6"]
+olefile = ["133b031eaf8fd2c9399b78b8bc5b8fcbe4c31e85295749bb17a87cba8f3c3964"]
+pillow = ["0163bd681d3488e2e9c26f4fbbfefcfb7f32259c431bfd2c3bc25574708a8b8c", "0ac037e6c1746d63a1ea354f0d5974d8f3f984fc0333be373ad193711a89b1e9", "0e3b56364a2c772c961a8faad8a835d3f24d8848310de035c9e07cc006035cbc", "150e24462fd106074a9a63417a55fbb0c633716cef9511f1bd7a773972de14f4", "1ab641cb7daf88e88ede8d3b89b7bd68a7099d8671160492d5e6845e24426080", "1d742642d01914b7e0cf6fd597a51f57d21fd68f794cf84803e03e72db78a261", "2046a2001e2c413998951cc28aa0dbfd4cff846a12e24c2145d42630d5104094", "223b06c337d8d60fb65af3b540ab1fa4644931d61d1fddf6e32f7a0e496685f2", "250d8470661fd657c2583672ab5139f40e7f2ef28ecdc90f87563af0b27f6fba", "39c7c9dcf64430091e30ef14d4191b4cae9b7b5ff29762357730aac4866fb189", "42b4a67949085ddd4559c3c716a00a275fb45cb2c3a3aeec95c4b94419b7c243", "4d3dbd93b131013a71b2e98530dd4945a03c7994d42381e44a921dd8bec300bc", "4fb8ab0f8895fb946454ef6ffe806f49ee387095f2d6112ae24670e5fb8fbcd9", "53eaec751151b5713a15b1cd62b06d0fc16d72f56623c15448728c554c30770b", "54898190b538a6c8fa4228e866ff2e7609da1ba9fd1d9cc5dc8ca591d37ce0a8", "575a9b3468c82f38be0419cd39d35001ae95a0cc5226534e45430035fecef583", "59cef683d79b85d55a950c1e61dc7b6be0c45a5074692746354cd9a8ace1cd17", "62a7bbf0a1120ff07a99ddedd383779a8d80bd9d363f3964b2b43a26cef6ea50", "6d814aa655d94c63547fc3208cb6ab886ff1a64c543b31f52658663b1bb3f011", "759e5e3e99c4ac87b99e9288a75236c63173d1bb24c8d3f9d9d2c8332fceeb0a", "77834551d3e928f3da922ce9dfb5c8db46758ea2f2922d4c5835a5b67a222aff", "7b3cf7a80608ed661b77793f64e1f2bd1e77136ad0b750aa2c81fac9c7e2c785", "822e4fc261d12fa44d88dadee0e93d59663db94d962d4ffffbf09b1fe5e5be51", "8989cbf10ea07fc9982ec86116f6234bb3e44da481874ac94650d6176f60106f", "9184b9788a9cf677e53626a4dc141136a22d349a5480479b98defd3cfb5015a4", "92087cb92a968421f42235f7d8153f4766b6ba213a6efb36b8060f3c9d294569", "922aeb050bd52d8ce9531ab57fd2440bfe975900e8700fec385fb741c3c557c7", "9a1514bee2e32e0d4c0f55ba7a20f4387f883e37c7d2db64ca50449ffebe86cc", "9adcfa2477b7e279ebeee75b49f535518201bbd7d26ca2ef1cf6751cb6e658e8", "9dc002a914cefa710dcb9fb204d34f6cd822662047a6038178f5fc9bfa7be961", "a336596b06e062b92eb8201a3b5dff07ae01c3a5d08ce5539d2da49b123f2be6", "a6f43511c79bed431ec2b56e55150b5222c732cd9e5f80e77a44e068e94c71fc", "a9721fe1f6fdfe0c108ea81b1a05dc216f1ec5bb65ef1de1d85fd00494d019e0", "a97c715d44efd5b4aa8d739b8fad88b93ed79f1b33fc2822d5802043f3b1b527", "a9bad3405a642649e68568fe9832e8f6ae585354ab0b4ae250816ead11a553a2", "b13106cb83a3b7d1a02fafb94bfafbc980465ba948b76ea1996245959c6783d2", "be803fae6af36639524a0f6861a8cface67bbec66c3416c3eaf592f1d45b8b20", "c00301e807084706bd46a1c56694ee235debe68eaf482c0186edfe07b93a9f6a", "cc6a5ed5b8f9d2f25e4e42d562e0ec4df3ce838f9e9b9d9d9b65fac6fe93a4cc", "ccc9c1f5ba413fc5ee09bc78de7dd2ad8e189edb48f3bc38acedd04a7f43a0c1", "dbefe5aa0882f00f12eceb3fb7df57105cd87fae767ca025db4685b7577c2390", "dc32362d0cadf18c3aef7040455760106cafe7dd3c211dc27c507e746376bb56", "e595312f67962d6b4fde3b7dffaaaca4becefa522d677676bb57b0ec5f8f921a", "e66080685863444738f08e13081c287e340b6e4f8bd674a2e0da967776ac6f46", "e75d745306ec8aac0e6903358fdfc7fb6854febe551ed753ee7a1cad058b61bb", "effa82e72f5064439a3d2c7ff615b999eb1c4d65bb1f1e6ee6e2ddb345b3e81e", "f2d71951f473744ac617b645b62d0c4df5372ef4618c425646bfe5e2e8878e61"]
+pluggy = ["447ba94990e8014ee25ec853339faf7b0fc8050cdc3289d4d71f7f410fb90095", "bde19360a8ec4dfd8a20dcb811780a30998101f078fc7ded6162f0076f50508f"]
+py = ["bf92637198836372b520efcba9e020c330123be8ce527e535d185ed4b6f45694", "e76826342cefe3c3d5f7e8ee4316b80d1dd8a300781612ddbc765c17ba25a6c6"]
+pytz = ["31cb35c89bd7d333cd32c5f278fca91b523b0834369e757f4c5641ea252236ca", "8e0f8568c118d3077b46be7d654cc8167fa916092e28320cde048e54bfc9f1e6"]
+six = ["70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9", "832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb"]
+toml = ["229f81c57791a41d65e399fc06bf0848bab550a9dfd5ed66df18ce5f05e73d5c", "235682dd292d5899d361a811df37e04a8828a5b1da3115886b73cf81ebc9100e", "f1db651f9657708513243e61e6cc67d101a39bad662eaa9b5546f789338e07a3"]
+tox = ["513e32fdf2f9e2d583c2f248f47ba9886428c949f068ac54a0469cac55df5862", "75fa30e8329b41b664585f5fb837e23ce1d7e6fa1f7811f2be571c990f9d911b"]
+virtualenv = ["686176c23a538ecc56d27ed9d5217abd34644823d6391cbeb232f42bf722baad", "f899fafcd92e1150f40c8215328be38ff24b519cd95357fa6e78e006c7638208"]
