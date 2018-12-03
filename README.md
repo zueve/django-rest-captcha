@@ -1,6 +1,6 @@
 # Django rest captcha
 
-Lightweight version of django-simple-captcha for work with django-rest-framework.
+Lightweight version of `django-simple-captcha` for work with `django-rest-framework`.
 
 
 ## Features
