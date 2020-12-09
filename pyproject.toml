@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-rest-captcha"
-version = "0.1.0"
+version = "0.2.0"
 description = "Lightweight version of django-simple-captcha for work with django-rest-framework"
 readme = "README.md"
 authors = ["evgeny.zuev <zueves@gmail.com>"]
@@ -12,8 +12,8 @@ packages = [
 [tool.poetry.dependencies]
 python = "*"
 djangorestframework = "^3.5"
-django='*'
-Pillow = '^4.1.1'
+django="*"
+Pillow = ">=4.3.0"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.5"
