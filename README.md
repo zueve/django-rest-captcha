@@ -13,7 +13,7 @@ Lightweight version of `django-simple-captcha` for work with `django-rest-framew
 ## Usage
 Add `RestCaptchaSerializer` to your protected request validator:
 ```
-from rest_captcha serializer import RestCaptchaSerializer
+from rest_captcha.serializers import RestCaptchaSerializer
 class HumanOnlyDataSerializer(RestCaptchaSerializer):
     pass
 ```
