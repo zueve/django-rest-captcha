@@ -4,7 +4,7 @@ import base64
 from six import PY2
 from PIL import Image
 from django.test import TestCase, override_settings
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from rest_captcha.serializers import RestCaptchaSerializer
 from django.core.cache import cache
 from .settings import api_settings

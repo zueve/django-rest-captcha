@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext_lazy as _
 from django.core.cache import caches
 from .settings import api_settings
 from . import utils
