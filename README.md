@@ -27,10 +27,10 @@ For provide this fields client(js code) should generate key:
     'image_type': 'image/png',
     'image_decode': 'base64',
     'captcha_key': 'de67e7f3-72d9-42d8-9677-ea381610363d',
-    'captcha_value': '... image encoded in base64'
+    'captcha_image': '... image encoded in base64'
 }
 ```
-`captcha_value` - is base64 encoded PNG image, client should decode and show this image to human for validation and send letters from captcha to protected api.
+`captcha_image` - is base64 encoded PNG image, client should decode and show this image to human for validation and send letters from captcha to protected api.
 If human have mistake - client should re generate your image.
 
 **Note:** See also [trottling](https://www.django-rest-framework.org/api-guide/throttling/) for protect public api
