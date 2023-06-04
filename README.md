@@ -13,7 +13,7 @@ Lightweight version of `django-simple-captcha` for work with `django-rest-framew
 ## Usage
 Add `RestCaptchaSerializer` to your protected request validator:
 ```
-from rest_captcha serializer import RestCaptchaSerializer
+from rest_captcha.serializer import RestCaptchaSerializer
 class HumanOnlyDataSerializer(RestCaptchaSerializer):
     pass
 ```
@@ -27,7 +27,7 @@ For provide this fields client(js code) should generate key:
     'image_type': 'image/png',
     'image_decode': 'base64',
     'captcha_key': 'de67e7f3-72d9-42d8-9677-ea381610363d',
-    'captcha_value': '... image encoded in base64'
+    'captcha_image': '... image encoded in base64'
 }
 ```
 `captcha_value` - is base64 encoded PNG image, client should decode and show this image to human for validation and send letters from captcha to protected api.
