@@ -8,9 +8,22 @@ USER_SETTINGS = getattr(settings, 'REST_CAPTCHA', None)
 FONT_PATH = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'fonts/Vera.ttf')
 
+small_letters = 'abcdefghijklmnopqrstuvwxyz'
+numeric_chars = '0123456789'
+ALPHABET_CHOICES = {
+    'capital_letters': small_letters.upper(),
+    'small_letters': small_letters,
+    'numeric': numeric_chars,
+    'small_and_capital': small_letters + small_letters.upper(),
+    'capital_and_numeric': small_letters.upper() + numeric_chars,
+    'small_and_numeric': small_letters + numeric_chars,
+    'all': small_letters + small_letters.upper() + numeric_chars
+}
+
 DEFAULTS = {
     'CAPTCHA_CACHE': 'default',
-    'CAPTCHA_TIMEOUT': 300,  # 5 minuts
+    'CAPTCHA_ALPHABET': 'capital_letters',
+    'CAPTCHA_TIMEOUT': 300,  # 5 minutes
     'CAPTCHA_CACHE_KEY': 'rest_captcha_{key}.{version}',
     'CAPTCHA_KEY': 'captcha_key',
     'CAPTCHA_IMAGE': 'captcha_image',
@@ -31,3 +44,5 @@ DEFAULTS = {
 IMPORT_STRINGS = ('FILTER_FUNCTION', 'NOISE_FUNCTION')
 
 api_settings = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
+
+assert api_settings.CAPTCHA_ALPHABET in ALPHABET_CHOICES, "`CAPTCHA_ALPHABET` is Invalid."

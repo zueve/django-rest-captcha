@@ -11,11 +11,11 @@ def get_cache_key(captcha_key):
 
 
 def random_char_challenge(length):
-    chars = 'abcdefghijklmnopqrstuvwxyz'
+    chars = api_settings.CAPTCHA_ALPHABET
     ret = ''
     for i in range(length):
         ret += random.choice(chars)
-    return ret.upper()
+    return ret
 
 
 def filter_smooth(image, filter_code):

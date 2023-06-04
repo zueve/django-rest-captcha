@@ -54,6 +54,7 @@ Set rest_captcha settings (if you want), see defaults:
 ```
 REST_CAPTCHA = {
     'CAPTCHA_CACHE': 'default',
+    'CAPTCHA_ALPHABET': 'capital_letters',
     'CAPTCHA_TIMEOUT': 300,  # 5 minutes
     'CAPTCHA_LENGTH': 4,
     'CAPTCHA_FONT_SIZE': 22,
@@ -67,6 +68,9 @@ REST_CAPTCHA = {
     'NOISE_FUNCTION': 'rest_captcha.captcha.noise_default'
 }
 ```
+##### CAPTCHA_ALPHABET
+The key `CAPTCHA_ALPHABET` defines the characters that the captcha code will be created with. It can contain small or capital letters or numbers or a combination of them. The possible values are `capital_letters`, `small_letters`, `numeric`, `small_and_capital`, `capital_and_numeric`, `small_and_numeric` and `all`.
+
 
 We recommend using redis or local memory as cache with set parameter, with bigger value of MAX_ENTRIES:
 ```
