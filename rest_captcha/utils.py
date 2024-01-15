@@ -11,7 +11,7 @@ def get_cache_key(captcha_key):
 
 
 def random_char_challenge(length):
-    chars = 'abcdefghijklmnopqrstuvwxyz'
+    chars = 'abcdefghijklmnopqrstuvwxyz1234567890'
     ret = ''
     for i in range(length):
         ret += random.choice(chars)
